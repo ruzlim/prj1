@@ -1,0 +1,58 @@
+https://hub.docker.com/
+ruzlim
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+$ npm init -y
+=> package.json
+
+$npm install express
+=> packege-lock.json
+
+*** Create index.js ***
+$ node index.js
+
+*** Create Dockerfile ***
+$ docker build -t node-alpine .
+$ docker inspect node-alpine
+$ docker run --rm --name node-alpine-app -d -p 3000:3000 node-alpine
+    $ curl localhost:3000
+$ docker exec -it node-alpine-app sh
+    $ cat /etc/*-release
+    $ apk add --version
+    $ docker exec node-alpine-app npm list
+$ docker stop node-alpine-app
+$ docker rm node-alpine-app -f
+$ docker rmi node-alpine
+
+*** Create docker-compose.yml ***
+$ docker-compose up -d
+$ docker-compose up --build -d
+$ docker-compose down
+
+*** Example pull ***
+$ docker pull ubuntu:16.04
+$ docker pull jenkins/jenkins
+$ docker pull jenkins/jenkins:lts-jdk11
+$ docker pull postgres:11
+$ docker pull dpage/pgadmin4
+$ docker pull deck/rundeck:3.4.3
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+*** Example run ***
+
+# Jenkins
+$ docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+$ docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v C:\Users\Narut\coding\prj1\jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+http://localhost:8080/
+admin:a0211c6744004405a4e8942eeba05b16
+
+# RunDeck
+$ docker run --name some-rundeck -p 4440:4440 -v data:/home/rundeck/server/data rundeck/rundeck:3.4.4
+$ docker run -d --name rundeck -p 4440:4440 -v C:\Users\Narut\coding\prj1\rundeck_data:/home/rundeck/server/data rundeck/rundeck:3.4.3
+http://localhost:4440/user/login
+admin:admin
+
+# Postgres
+$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres:11
+    $ psql -d postgres -h localhost -p 5432 -U postgres
+    $ docker exec -it some-postgres psql -U postgres
