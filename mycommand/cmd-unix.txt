@@ -10,7 +10,11 @@ $ find / -name '*.py' 2>/dev/null
 $ find . -type d -name '00*'
 $ find . -type f -name '00*'
 
+$ du -sh ./*
 $ rm -r ./*
+
+$ zip -r name.zip directory
+$ unzip name.zip
 
 $ grep 'JDA A-18' filter.csv
 $ grep -nwi 'JDA A-18' *.csv
